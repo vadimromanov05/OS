@@ -11,7 +11,7 @@ FetchContent_MakeAvailable(googletest)
 
 
 add_executable(test1 lab1_test.cpp ../LW1/src/utils.c ../LW1/src/child.c ../LW1/src/parent.c ../LW1/include/utils.h)
-target_link_libraries(test1 PRIVATE GTest::gtest GTest::gtest_main pthread)
+target_link_libraries(test1 gtest_main gmock_main)
 add_test(NAME test1 COMMAND test1)
 
 #add_executable(test2 lab2_test.cpp)

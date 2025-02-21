@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "/home/vadim/Рабочий стол/OS/LW1/include/utils.h"
+#include "../LW1/include/utils.h"
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>

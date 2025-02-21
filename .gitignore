@@ -1,0 +1,52 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Файлы и каталоги сборки
+**/build/
+/CMakeFiles
+/CMakeCache.txt
+*.cmake
+Makefile
+*.ninja
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+
+# Файлы IDE
+.vscode/
+.idea/
+*.vcxproj
+*.vcxproj.filters
+*.suo
+*.user
+*.suo
+*.pdb
+*.d
+
+# Локальные файлы
+*.log
+*.tmp
+*.bak
+
+# GoogleTest артефакты (если сгенерированы автоматически)
+/external/googletest/*
+!external/googletest/CMakeLists.txt
+
+# Прочие временные файлы
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# Файлы компилятора
+*.gch
+*.pch
+*.pch
+*.gcno
+*.gcda
+*.gcov

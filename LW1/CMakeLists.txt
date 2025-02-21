@@ -7,5 +7,5 @@ include_directories(include)
 
 add_executable(lab1 main.c src/parent.c src/child.c src/utils.c include/utils.h)
 
-#g++ lab1_test.cpp ../LW1/src/child.c ../LW1/src/parent.c ../LW1/src/main.c -o test -lgtest -lgmock -pthread
+#g++ lab1_test.cpp ../LW1/src/child.c ../LW1/src/parent.c ../LW1/main.c -o test -lgtest -lgmock -pthread
 #gcc parent.c child.c main.c -o program
