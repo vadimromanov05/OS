@@ -9,8 +9,9 @@ extern "C" {
 
 TEST(Pi_first, test) {
     constexpr int K = 100000;
-    const float pi = Pi(K);
-    ASSERT_TRUE(abs(pi - M_PI) < 0.0001);
+    constexpr int M = 10;
+    const int gcf = GCF(K, M);
+    ASSERT_TRUE(gcf == 10);
 }
 
 TEST(E_first, test) {

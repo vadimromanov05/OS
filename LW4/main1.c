@@ -78,6 +78,8 @@ int main() {
 
             const float result = E(x);
             printf("%f\n", result);
+        } else {
+            printf("Wrong answer!\n");
         }
     }
 }
