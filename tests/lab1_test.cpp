@@ -7,7 +7,7 @@
 
 
 TEST(CommonTest, WriteToPipe) {
-    std::cout << "Wo sind Sie?\n";
+    //std::cout << "Wo sind Sie?\n";
     int pipefd[2];
     ASSERT_EQ(pipe(pipefd), 0);
 
@@ -28,7 +28,7 @@ TEST(CommonTest, WriteToPipe) {
 TEST(CommonTest, ProcessInputFromPipe) {
     const char *temp_filename = "results.txt";
     remove(temp_filename);
-    std::cout << "Der erstes Fall ist gemacht!\n";
+    //std::cout << "Der erstes Fall ist gemacht!\n";
 
     int pipefd[2];
     ASSERT_EQ(pipe(pipefd), 0);
@@ -36,7 +36,7 @@ TEST(CommonTest, ProcessInputFromPipe) {
     const char *input_string = "4 2 0 1";
     write_to_pipe(pipefd[1], input_string);
     close(pipefd[1]);
-    std::cout << "Der zweites Fall ist gemacht!\n";
+    //std::cout << "Der zweites Fall ist gemacht!\n";
 
 
     if (fork() == 0) {
@@ -45,14 +45,14 @@ TEST(CommonTest, ProcessInputFromPipe) {
     }
 
     close(pipefd[0]);
-    std::cout << "Der drittes Fall ist gemacht!\n";
+    //std::cout << "Der drittes Fall ist gemacht!\n";
     wait(NULL);
 
 
     std::ifstream file(temp_filename);
     //std::cout << "How can I do it?\n";
     ASSERT_TRUE(file.is_open());
-    std::cout << "Der viertes Fall ist gemacht!\n";
+    //std::cout << "Der viertes Fall ist gemacht!\n";
 
     std::string line;
     //std::cout << "Was ist das?!1\n";
@@ -65,12 +65,12 @@ TEST(CommonTest, ProcessInputFromPipe) {
             found_error_message = true;
         }
     }
-    std::cout << "Der funftes Fall ist gemacht!\n";
+    //std::cout << "Der funftes Fall ist gemacht!\n";
 
     file.close();
     //std::cout << "Du bist ein Mensch!\n";
     ASSERT_TRUE(found_error_message);
-    std::cout << "Der sechstes Fall ist gemacht!\n";
+    //std::cout << "Der sechstes Fall ist gemacht!\n";
     remove(temp_filename);
 }
 

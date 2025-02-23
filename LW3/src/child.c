@@ -1,8 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <ctype.h>
-#include "/home/vadim/Рабочий стол/OS/LW3/include/utils.h"
+#include "../include/utils.h"
 
 
 int main(int argc, char* argv[]) {
@@ -70,7 +73,7 @@ int main(int argc, char* argv[]) {
                     is_error = 1;
                     break;
                 }
-                fprintf(output_file, "%f / %f = %f\n", first_num, num, first_num / num);
+                result /= num;
             }
         }
 
@@ -79,6 +82,7 @@ int main(int argc, char* argv[]) {
             setData(shm, "ERROR");
             
         } else {
+            fprintf(output_file, "Result: %.2f\n", result);
             fflush(output_file);
         }
 

@@ -1,5 +1,7 @@
-#include "/home/vadim/Рабочий стол/OS/LW3/include/utils.h"
-
+#include "../include/utils.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Зануление массива в структурке и инициализация семафоров для родительского и дечернего
 void newSem(shared_data *shm) {

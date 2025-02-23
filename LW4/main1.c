@@ -5,7 +5,7 @@
 static void *library1;
 static void *library2;
 
-static float (*Pi)(int);
+static int (*GCF)(int, int);
 static float (*E)(int);
 
 typedef enum {
@@ -16,16 +16,16 @@ typedef enum {
 typedef enum {
     EXIT = -1,
     CHANGE = 0,
-    PI = 1,
+    NOD = 1,
     EXP = 2
 } Command;
 
 void changeImpl(const Impl impl) {
     if (impl == FIRST) {
-        Pi = (float(*)(int))dlsym(library1, "Pi");
+        GCF = (int(*)(int, int))dlsym(library1, "GCF");
         E = (float(*)(int))dlsym(library1, "E");
     } else {
-        Pi = (float(*)(int))dlsym(library2, "Pi");
+        GCF = (int(*)(int, int))dlsym(library2, "GCF");
         E = (float(*)(int))dlsym(library2, "E");
     }
 }
@@ -46,7 +46,7 @@ int main() {
     Impl impl = FIRST;
     printf(
         "Usage:\n\t\b-1 - exit\n\t0 - change implementation\n"
-        "\t1 - find Pi\n\t2 - find E\n"
+        "\t1 - find GCF\n\t2 - find E\n"
     );
     changeImpl(impl);
 
@@ -65,11 +65,12 @@ int main() {
             impl =! impl;
             changeImpl(impl);
             printf("Implementation changed to %s\n", impl == FIRST ? "first" : "second");
-        } else if (command == PI) {
+        } else if (command == NOD) {
             int K;
-            scanf(" %d", &K);
+            int M;
+            scanf(" %d %d", &K, &M);
 
-            const float result = Pi(K);
+            const float result = GCF(K, M);
             printf("%f\n", result);
         } else if (command == EXP) {
             int x;

@@ -1,4 +1,4 @@
-#include "/home/vadim/Рабочий стол/OS/LW1/include/utils.h"
+#include "../include/utils.h"
 
 
 void write_to_pipe(int write_fd, const char *buffer) {

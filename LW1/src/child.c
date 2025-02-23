@@ -1,4 +1,4 @@
-#include "/home/vadim/Рабочий стол/OS/LW1/include/utils.h"
+#include "../include/utils.h"
 
 
 void process_input_from_pipe(int read_fd, int pipefd) {

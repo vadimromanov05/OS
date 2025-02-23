@@ -1,7 +1,7 @@
 #ifndef HEADERS_H
 #define HEADERS_H
 
-float Pi(int K);
+int GCF(int a, int b);
 float E(int x);
 
 #endif

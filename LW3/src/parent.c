@@ -1,8 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <sys/mman.h>
-#include "/home/vadim/Рабочий стол/OS/LW3/include/utils.h"
+#include <string.h>
+#include "../include/utils.h"
 
 
 #define SHM_NAME "/shm_channel"

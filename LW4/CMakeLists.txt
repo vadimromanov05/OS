@@ -11,5 +11,5 @@ add_executable(lab4l main1.c)
 target_include_directories(lab4l PRIVATE include)
 target_link_libraries(lab4l first second)
 
-add_executable(lab4d main2.c)
-target_include_directories(lab4d PRIVATE include)
+#add_executable(lab4d main2.c)
+#target_include_directories(lab4d PRIVATE include)

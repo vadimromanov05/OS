@@ -5,7 +5,7 @@
 #include <cstdlib>
 
 extern "C" {
-#include "../LW3/include/tools.h"
+    #include "/home/vadim/OS/LW3/include/utils.h"
 }
 
 #define SHM_NAME "/shm_channel"

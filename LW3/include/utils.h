@@ -4,10 +4,8 @@
 
 #include <semaphore.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-
+// Структурка для взаимодействия процессов
 typedef struct {
     sem_t sem_parent;
     sem_t sem_child;
@@ -18,5 +16,6 @@ void newSem(shared_data *shm);
 void setData(shared_data *shm, char* str);
 char* readCommand(FILE* stream);
 void destroy(shared_data *shm);
+
 
 #endif

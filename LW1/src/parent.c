@@ -1,4 +1,4 @@
-#include "/home/vadim/Рабочий стол/OS/LW1/include/utils.h"
+#include "../include/utils.h"
 #include <wait.h>
 
 
