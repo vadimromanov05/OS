@@ -1,11 +1,11 @@
-#include "include/cp.h"
-
+#include "../include/tools.h"
 #include <iostream>
 #include <fstream>
-#include <yaml-cpp/yaml.h>
 #include <unordered_set>
 #include <sstream>
 #include <map>
+#include "../inih/cpp/INIReader.h"
+
 
 std::string GetConfigFileName() {
     std::string configFile;
@@ -39,7 +39,6 @@ int main(int argc, char* argv[]) {
         std::string input;
         std::cout << "Enter the maximum number of parallel jobs: ";
         std::getline(std::cin, input);
-
         std::istringstream iss(input);
         iss >> maxParallelJobs >> mustBreakInput;
     }
@@ -48,60 +47,61 @@ int main(int argc, char* argv[]) {
         mustBreak = mustBreakInput;
     }
 
-    std::ifstream file(configFile);
-    if (!file.is_open()) {
+    // Используем INIReader для чтения конфигурации
+    INIReader reader(configFile);
+    if (reader.ParseError() < 0) {
         std::cerr << "Error occured: Cannot open file " << configFile << std::endl;
         return 1;
     }
 
-    YAML::Node config = YAML::Load(file);
-    file.close();
-
     std::unordered_set<int> ids;
     std::map<std::string, int> barrierUsage;
 
-    for (const auto& job : config["jobs"]) {
-        int id;
-        try {
-            id = job["id"].as<int>();
-
-            if (ids.find(id) != ids.end()) {
-                std::cerr << "Error occured: Graph contains duplicated ids" << std::endl;
-                return 1;
-            }
-
-            ids.insert(id);
-            std::string name = job["name"].as<std::string>();
-            jobs[id] = {name, job["dependencies"].as<std::vector<int>>(), job["barrier"].as<std::string>(), job["time"].as<int>()};
-        } catch (YAML::Exception&) {
-            std::cerr << "Error occured: Parsing YAML failed" << std::endl;
+    // Чтение данных о заданиях из INI-файла
+    int jobCount = reader.GetInteger("jobs", "count", 0);
+    for (int i = 0; i < jobCount; ++i) {
+        std::string section = "job" + std::to_string(i);
+        
+        int id = reader.GetInteger(section, "id", -1);
+        if (id == -1) {
+            std::cerr << "Error occured: required field 'id' is missing in section " << section << std::endl;
             return 1;
         }
-        graph[id] = job["dependencies"].as<std::vector<int>>();
 
-        if (job["barrier"]) {
-            const std::string barrier_name = job["barrier"].as<std::string>();
-            barrierUsage[barrier_name]++;
+        if (ids.find(id) != ids.end()) {
+            std::cerr << "Error occured: Graph contains duplicated ids" << std::endl;
+            return 1;
+        }
+
+        ids.insert(id);
+        std::string name = reader.Get(section, "name", "");
+        std::string dependenciesStr = reader.Get(section, "dependencies", "");
+        std::vector<int> dependencies;
+        std::istringstream depStream(dependenciesStr);
+        int depId;
+        while (depStream >> depId) {
+            dependencies.push_back(depId);
+            if (depStream.peek() == ',') depStream.ignore();
+        }
+        std::string barrier = reader.Get(section, "barrier", "");
+        int time = reader.GetInteger(section, "time", -1);
+
+        // Здесь нужно создать структуры, которые у вас были до этого
+        jobs[id] = {name, dependencies, barrier, time};
+        graph[id] = dependencies;
+
+        if (!barrier.empty()) {
+            barrierUsage[barrier]++;
         }
     }
 
-    for (const auto& job : config["jobs"]) {
-        if (job["barrier"]) {
-            const std::string barrier_name = job["barrier"].as<std::string>();
-            int barrier_count = barrierUsage[barrier_name];
+    // Проверяем инициализацию барьеров и связи
+    for (const auto& job : graph) {
+        const std::string& barrier_name = job.barriers;
+        int barrier_count = barrierUsage[barrier_name];
 
-            if (job["barrier_count"]) {
-                barrier_count = job["barrier_count"].as<int>();
-                if (barrier_count > barrierUsage[barrier_name]) {
-                    std::cerr << "Error occured: barrier_count for " << barrier_name << " is greater than the number of jobs using it" << std::endl;
-                    return 1;
-                }
-                if (barrier_count <= 0) {
-                    std::cerr << "Error occured: barrier_count for " << barrier_name << " must be greater than 0" << std::endl;
-                    return 1;
-                }
-            }
-
+        if (barrier_count > 0) {
+            // логика инициализации барьеров
             if (barriers.find(barrier_name) == barriers.end()) {
                 pthread_barrier_t barrier;
                 pthread_barrier_init(&barrier, nullptr, barrier_count);
@@ -112,13 +112,6 @@ int main(int argc, char* argv[]) {
 
     if (!check_graph(graph)) {
         return 1;
-    }
-
-    for (const auto& [job, deps] : graph) {
-        inDegree[job] = deps.size();
-        if (deps.empty()) {
-            readyJobs.push(job);
-        }
     }
 
     std::vector<pthread_t> workers;

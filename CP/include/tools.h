@@ -1,6 +1,4 @@
-#ifndef CP_H
-#define CP_H
-
+#pragma once
 
 #include <atomic>
 #include <queue>
@@ -44,5 +42,3 @@ bool check_graph(std::unordered_map<int, std::vector<int>>& graph);
 void exec(const std::string& jobName, int jobId, pthread_barrier_t* barrier, std::atomic<bool>& errorFlag, int execTime);
 
 void *thread_process(void*);
-
-#endif

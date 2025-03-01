@@ -1,0 +1,95 @@
+execve("./lab4l", ["./lab4l"], 0x7ffdb3af2be0 /* 48 vars */) = 0
+brk(NULL)                               = 0x6333244d6000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70649e954000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (Нет такого файла или каталога)
+openat(AT_FDCWD, "/home/vadim/OS/build/LW4/glibc-hwcaps/x86-64-v4/libfirst.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (Нет такого файла или каталога)
+newfstatat(AT_FDCWD, "/home/vadim/OS/build/LW4/glibc-hwcaps/x86-64-v4/", 0x7fffe40a96d0, 0) = -1 ENOENT (Нет такого файла или каталога)
+openat(AT_FDCWD, "/home/vadim/OS/build/LW4/glibc-hwcaps/x86-64-v3/libfirst.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (Нет такого файла или каталога)
+newfstatat(AT_FDCWD, "/home/vadim/OS/build/LW4/glibc-hwcaps/x86-64-v3/", 0x7fffe40a96d0, 0) = -1 ENOENT (Нет такого файла или каталога)
+openat(AT_FDCWD, "/home/vadim/OS/build/LW4/glibc-hwcaps/x86-64-v2/libfirst.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (Нет такого файла или каталога)
+newfstatat(AT_FDCWD, "/home/vadim/OS/build/LW4/glibc-hwcaps/x86-64-v2/", 0x7fffe40a96d0, 0) = -1 ENOENT (Нет такого файла или каталога)
+openat(AT_FDCWD, "/home/vadim/OS/build/LW4/libfirst.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0775, st_size=17480, ...}) = 0
+mmap(NULL, 16480, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70649e94f000
+mmap(0x70649e950000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x70649e950000
+mmap(0x70649e951000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70649e951000
+mmap(0x70649e952000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70649e952000
+close(3)                                = 0
+openat(AT_FDCWD, "/home/vadim/OS/build/LW4/libsecond.so", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0775, st_size=17576, ...}) = 0
+mmap(NULL, 16480, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70649e94a000
+mmap(0x70649e94b000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1000) = 0x70649e94b000
+mmap(0x70649e94c000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70649e94c000
+mmap(0x70649e94d000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x70649e94d000
+close(3)                                = 0
+openat(AT_FDCWD, "/home/vadim/OS/build/LW4/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (Нет такого файла или каталога)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=66559, ...}) = 0
+mmap(NULL, 66559, PROT_READ, MAP_PRIVATE, 3, 0) = 0x70649e939000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70649e600000
+mmap(0x70649e628000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x70649e628000
+mmap(0x70649e7b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x70649e7b0000
+mmap(0x70649e7ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x70649e7ff000
+mmap(0x70649e805000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x70649e805000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=952616, ...}) = 0
+mmap(NULL, 950296, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x70649e850000
+mmap(0x70649e860000, 520192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x10000) = 0x70649e860000
+mmap(0x70649e8df000, 360448, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8f000) = 0x70649e8df000
+mmap(0x70649e937000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xe7000) = 0x70649e937000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x70649e84e000
+arch_prctl(ARCH_SET_FS, 0x70649e84ee80) = 0
+set_tid_address(0x70649e84f150)         = 26643
+set_robust_list(0x70649e84f160, 24)     = 0
+rseq(0x70649e84f7a0, 0x20, 0, 0x53053053) = 0
+mprotect(0x70649e7ff000, 16384, PROT_READ) = 0
+mprotect(0x70649e937000, 4096, PROT_READ) = 0
+mprotect(0x70649e94d000, 4096, PROT_READ) = 0
+mprotect(0x70649e952000, 4096, PROT_READ) = 0
+mprotect(0x633304766000, 4096, PROT_READ) = 0
+mprotect(0x70649e992000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x70649e939000, 66559)           = 0
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x4), ...}) = 0
+getrandom("\x4e\x05\x45\xac\x22\xc1\x52\x19", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x6333244d6000
+brk(0x6333244f7000)                     = 0x6333244f7000
+write(1, "Usage:\n", 7Usage:
+)                 = 7
+write(1, "\t\10-1 - exit\n", 12-1 - exit
+)        = 12
+write(1, "\t1 - find INTEGRAl_RECTANGLE\n", 29	1 - find INTEGRAl_RECTANGLE
+) = 29
+write(1, "\t2 - find INTEGRAL_TRAPEZOID\n", 29	2 - find INTEGRAL_TRAPEZOID
+) = 29
+write(1, "\t3 - find CONVERT_TO_2\n", 23	3 - find CONVERT_TO_2
+) = 23
+write(1, "\t4 - find CONVERT_TO_3\n", 23	4 - find CONVERT_TO_3
+) = 23
+fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x4), ...}) = 0
+write(1, "command> ", 9command> )                = 9
+read(0, 3
+"3\n", 1024)                    = 2
+write(1, "Insert value(-s):\n", 18Insert value(-s):
+)     = 18
+read(0, 12
+"12\n", 1024)                   = 3
+write(1, "1100\n", 51100
+)                   = 5
+write(1, "command> ", 9command> )                = 9
+read(0, -1
+"-1\n", 1024)                   = 3
+lseek(0, -1, SEEK_CUR)                  = -1 ESPIPE (Недопустимая операция смещения)
+exit_group(0)                           = ?
++++ exited with 0 +++

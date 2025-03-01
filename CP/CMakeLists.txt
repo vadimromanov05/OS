@@ -1,10 +1,18 @@
+set(CMAKE_C_STANDARD 11)
+project(mai-os)
+
+include(FetchContent)
+
+FetchContent_Declare(
+        nlohmann_json
+        GIT_REPOSITORY https://github.com/benhoyt/inih.git
+        GIT_TAG        v3.11.2
+)
+
+FetchContent_MakeAvailable(inih)
+
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(YAML_CPP REQUIRED yaml-cpp)
-
-include_directories(${YAML_CPP_INCLUDE_DIRS})
-link_directories(${YAML_CPP_LIBRARY_DIRS})
-
-add_library(cp8_utils src/cp8_utils.cpp)
+add_library(cp8_utils src/tools.cpp)
 target_include_directories(cp8_utils PRIVATE include)
 target_link_libraries(cp8_utils PRIVATE ${YAML_CPP_LIBRARIES})
 
