@@ -7,50 +7,46 @@ extern "C" {
     #include <dlfcn.h>
 }
 
-TEST(Pi_first, test) {
-    constexpr int K = 100000;
-    constexpr int M = 10;
-    const int gcf = GCF(K, M);
-    ASSERT_TRUE(gcf == 10);
+TEST(INTEGRAL_TRIANGLE, test1) {
+    EXPECT_NEAR(SinIntegral_rectangle(0.0, M_PI, 0.001), 2.0, 0.01);
+    EXPECT_NEAR(SinIntegral_rectangle(0.0, M_PI / 2, 0.001), 1.0, 0.01);
 }
 
-TEST(E_first, test) {
-    constexpr int x = 100000;
-    const float e = E(x);
-    ASSERT_TRUE(abs(e - M_E) < 0.0001);
+
+TEST(INTEGRAL_TRAPEZOID, test2) {
+    EXPECT_NEAR(SinIntegral_trapezoid(0.0, M_PI, 0.001), 2.0, 0.01);
+    EXPECT_NEAR(SinIntegral_trapezoid(0.0, M_PI / 2, 0.001), 1.0, 0.01);
 }
 
-TEST(Pi_second, test) {
-    static void *library = dlopen("../LW4/libsecond.so", RTLD_LAZY);
 
-    if (library == NULL) {
-        fprintf(stderr, "Error with loading library2: %s\n", dlerror());
-        exit(-1);
-    }
-
-    float (*DynamicPi)(int) = (float(*)(int))dlsym(library, "Pi");
-
-    constexpr int K = 10000;
-    const float pi = DynamicPi(K);
-    ASSERT_TRUE(abs(pi - M_PI) < 0.01);
+TEST(CONVERT_UBER_NULL, test3){
+    const char *answer1 = translation_3(12);
+    const char *answer2 = translation_2(12);
+    ASSERT_STREQ(answer1, "110");
+    ASSERT_STREQ(answer2, "1100");
 }
 
-TEST(E_second, test) {
-    static void *library = dlopen("../LW4/libsecond.so", RTLD_LAZY);
 
-    if (library == NULL) {
-        fprintf(stderr, "Error with loading library2: %s\n", dlerror());
-        exit(-1);
-    }
 
-    float (*DynamicE)(int) = (float(*)(int))dlsym(library, "E");
-
-    constexpr int x = 100000;
-    const float e = DynamicE(x);
-    ASSERT_TRUE(abs(e - M_E) < 0.0001);
+TEST(CONVERT_UNTER_NULL, test4){
+    const char *answer1 = translation_3(-12);
+    const char *answer2 = translation_2(-12);
+    ASSERT_STREQ(answer1, "-110");
+    ASSERT_STREQ(answer2, "-1100");
 }
 
+
+TEST(NULL_TEST, test5){
+    const char *answer1 = translation_3(0);
+    const char *answer2 = translation_2(0);
+    ASSERT_STREQ(answer1, "0");
+    ASSERT_STREQ(answer2, "0");
+}
+
+
+
+/*
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
-}
+}*/

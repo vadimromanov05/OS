@@ -1,8 +1,12 @@
 #ifndef HEADERS_H
 #define HEADERS_H
-#include <stdio.h>
 
-int GCF(int a, int b);
-float E(int x);
+#include <stdlib.h>
+
+
+float SinIntegral_rectangle(float A, float B, float e);
+float SinIntegral_trapezoid(float A, float B, float e);
+char* translation_2(long x);
+char* translation_3(long x);
 
 #endif

@@ -6,4 +6,4 @@ set(CMAKE_C_STANDARD 17)
 
 include_directories(include)
 
-add_executable(lab2_exe src/utils.c)
+add_executable(lab2 src/utils.c)

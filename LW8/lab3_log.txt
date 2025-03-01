@@ -1,0 +1,57 @@
+execve("./lab3", ["./lab3"], 0x7ffc0110d9c0 /* 48 vars */) = 0
+brk(NULL)                               = 0x5981e0b9f000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x74718ba61000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (Нет такого файла или каталога)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=66559, ...}) = 0
+mmap(NULL, 66559, PROT_READ, MAP_PRIVATE, 3, 0) = 0x74718ba50000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x74718b800000
+mmap(0x74718b828000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x74718b828000
+mmap(0x74718b9b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x74718b9b0000
+mmap(0x74718b9ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x74718b9ff000
+mmap(0x74718ba05000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x74718ba05000
+close(3)                                = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x74718ba4d000
+arch_prctl(ARCH_SET_FS, 0x74718ba4d740) = 0
+set_tid_address(0x74718ba4da10)         = 8987
+set_robust_list(0x74718ba4da20, 24)     = 0
+rseq(0x74718ba4e060, 0x20, 0, 0x53053053) = 0
+mprotect(0x74718b9ff000, 16384, PROT_READ) = 0
+mprotect(0x5981c6de3000, 4096, PROT_READ) = 0
+mprotect(0x74718ba9f000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x74718ba50000, 66559)           = 0
+fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+getrandom("\x55\xf1\x99\xc8\x0a\xa6\x1b\x44", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x5981e0b9f000
+brk(0x5981e0bc0000)                     = 0x5981e0bc0000
+fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(0x88, 0x2), ...}) = 0
+write(1, "Enter the output file name: ", 28Enter the output file name: ) = 28
+read(0, results.txt
+"results.txt\n", 1024)          = 12
+openat(AT_FDCWD, "results.txt", O_WRONLY|O_CREAT|O_TRUNC, 0644) = 3
+openat(AT_FDCWD, "/dev/shm/shm_channel", O_RDWR|O_CREAT|O_NOFOLLOW|O_CLOEXEC, 0666) = 4
+ftruncate(4, 320)                       = 0
+mmap(NULL, 320, PROT_READ|PROT_WRITE, MAP_SHARED, 4, 0) = 0x74718ba60000
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x74718ba4da10) = 8993
+read(0, 1 2 3 4 5
+"1 2 3 4 5\n", 1024)            = 10
+futex(0x74718ba60020, FUTEX_WAKE, 1)    = 1
+futex(0x74718ba60000, FUTEX_WAIT_BITSET|FUTEX_CLOCK_REALTIME, 0, NULL, FUTEX_BITSET_MATCH_ANY) = 0
+read(0, 
+"\n", 1024)                     = 1
+futex(0x74718ba60020, FUTEX_WAKE, 1)    = 1
+wait4(8993, NULL, 0, NULL)              = 8993
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=8993, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+munmap(0x74718ba60000, 320)             = 0
+close(4)                                = 0
+unlink("/dev/shm/shm_channel")          = 0
+close(3)                                = 0
+exit_group(0)                           = ?
++++ exited with 0 +++
