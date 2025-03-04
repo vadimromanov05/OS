@@ -54,10 +54,8 @@ void Controller(std::istream &stream, bool test) {
                 if (!InsertNode(root, id)) {
                     std::cout << "Error: Already exists\n";
                     continue;
-                } else {
-                    std::cout << "Ok\n";
                 }
-                std::cout << "Ok: " << root->pid << "\n";
+                std::cout << "Ok: " << id << "\n";
             } else if (cmdType == "exec") {
                 int id;
                 std::string subcommand;

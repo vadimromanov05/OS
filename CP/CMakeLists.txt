@@ -1,21 +1,17 @@
-set(CMAKE_C_STANDARD 11)
-project(mai-os)
+project(lab8)
 
-include(FetchContent)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-FetchContent_Declare(
-        nlohmann_json
-        GIT_REPOSITORY https://github.com/benhoyt/inih.git
-        GIT_TAG        v3.11.2
+
+set(SOURCES
+    src/Job.cpp
+    src/DAG.cpp
+    src/ThreadPool.cpp
+    src/Barrier.cpp
+    main.cpp
 )
 
-FetchContent_MakeAvailable(inih)
+include_directories(include)
 
-find_package(PkgConfig REQUIRED)
-add_library(cp8_utils src/tools.cpp)
-target_include_directories(cp8_utils PRIVATE include)
-target_link_libraries(cp8_utils PRIVATE ${YAML_CPP_LIBRARIES})
-
-add_executable(cp8 main.cpp)
-target_include_directories(cp8 PRIVATE include)
-target_link_libraries(cp8 PRIVATE cp8_utils ${YAML_CPP_LIBRARIES})
+add_executable(lab8 ${SOURCES})

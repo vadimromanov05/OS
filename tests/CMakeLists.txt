@@ -24,5 +24,13 @@ add_test(NAME test3 COMMAND test3)
 
 add_executable(test4 lab4_test.cpp ../LW4/src/src1.c ../LW4/src/src2.c)
 target_include_directories(test4 PUBLIC ../LW4/include)
-target_link_libraries(test4 PRIVATE PRIVATE GTest::gtest GTest::gtest_main pthread)
+target_link_libraries(test4 PRIVATE GTest::gtest GTest::gtest_main pthread)
 
+add_executable(test567 lab567_test.cpp)
+target_include_directories(test567 PUBLIC ../LW567/include)
+target_link_libraries(test567 PRIVATE lab567_tools lab567_controller lab567_worker GTest::gtest)
+
+add_executable(test_cp lab8_tests.cpp)
+target_sources(test_cp PRIVATE ../CP/src/Job.cpp ../CP/src/DAG.cpp ../CP/src/ThreadPool.cpp ../CP/src/Barrier.cpp)
+target_include_directories(test_cp PRIVATE ../lab8/include)
+target_link_libraries(test_cp PRIVATE GTest::gtest GTest::gtest_main pthread)
