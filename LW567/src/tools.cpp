@@ -116,22 +116,20 @@ void TerminateNodes(const std::shared_ptr<Node>& node) {
     TerminateNodes(node->right);
 }
 
-
-// Таймерные функции
 void StartTimer(std::shared_ptr<Node>& node) {
     if (node->start_time.has_value()) {
-        return; // Если таймер уже запущен, не запускаем снова
+        return;
     }
     node->start_time = std::chrono::steady_clock::now();
 }
 
 void StopTimer(std::shared_ptr<Node>& node) {
     if (!node->start_time.has_value()) {
-        return; // Если таймер не был запущен, ничего не делаем
+        return;
     }
     auto now = std::chrono::steady_clock::now();
     node->elapsed_time += std::chrono::duration_cast<std::chrono::milliseconds>(now - node->start_time.value());
-    node->start_time.reset(); // Сбрасываем start_time, так как таймер остановлен
+    node->start_time.reset();
 }
 
 std::chrono::milliseconds GetElapsedTime(std::shared_ptr<Node>& node) {
@@ -139,5 +137,5 @@ std::chrono::milliseconds GetElapsedTime(std::shared_ptr<Node>& node) {
         auto now = std::chrono::steady_clock::now();
         return node->elapsed_time + std::chrono::duration_cast<std::chrono::milliseconds>(now - node->start_time.value());
     }
-    return node->elapsed_time; // Если таймер не был запущен, возвращаем только прошедшее время
+    return node->elapsed_time;
 }

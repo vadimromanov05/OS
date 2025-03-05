@@ -1,8 +1,6 @@
-project(lab8)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+project(cp)
 
 set(SOURCES
     src/Job.cpp
@@ -14,4 +12,4 @@ set(SOURCES
 
 include_directories(include)
 
-add_executable(lab8 ${SOURCES})
+add_executable(cp ${SOURCES})

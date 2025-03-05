@@ -17,7 +17,6 @@ struct Node {
     std::shared_ptr<Node> left = nullptr;
     std::shared_ptr<Node> right = nullptr;
 
-    // Таймер
     std::optional<std::chrono::steady_clock::time_point> start_time;
     std::chrono::milliseconds elapsed_time = std::chrono::milliseconds(0);
 

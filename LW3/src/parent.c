@@ -14,7 +14,7 @@ int main(void) {
     printf("Enter the output file name: ");
     char file_name[256];
     scanf("%s", file_name);
-    getchar(); // чтобы считать и удалить \n из буфера
+    getchar();
 
     int file = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (file < 0) {
@@ -41,7 +41,6 @@ int main(void) {
 
     newSem(shm);
 
-    // создаю дочерний и подменяю образ процесса
     pid_t child = fork();
     if (child < 0) {
         perror("Failed to fork");
@@ -60,11 +59,10 @@ int main(void) {
             free(input);
             break;
         }
-        setData(shm, input); // передаю команду в data структурки
-        sem_post(&shm->sem_child); // уведомляю дочерний о новой команде
-        sem_wait(&shm->sem_parent); // родитель ждёт дочернего
+        setData(shm, input);
+        sem_post(&shm->sem_child);
+        sem_wait(&shm->sem_parent);
 
-        // реакция на ошибку деления на 0 или некорректного символа
         if (strcmp(shm->data, "ERROR") == 0) {
             fprintf(stderr, "End of work. You can try again)\n");
             free(input);
@@ -74,7 +72,7 @@ int main(void) {
         free(input);
     }
 
-    setData(shm, "EXIT"); // уведомляем дочерний о конце
+    setData(shm, "EXIT");
     sem_post(&shm->sem_child);
 
     waitpid(child, NULL, 0);

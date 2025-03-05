@@ -9,19 +9,16 @@
 
 
 int main(int argc, char* argv[]) {
-    // чек параметров
     if (argc != 3) {
         printf("Necessary arguments were not provided\n");
         exit(EXIT_FAILURE);
     }
 
-    // открываю объект разделяемой памяти в режиме чтения и записи
     int shm_fd = shm_open(argv[1], O_RDWR, 0666);
     if (shm_fd == -1) {
         perror("Failed to open shared_memory\n");
         exit(EXIT_FAILURE);
     }
-    // отображаю объект разделяемой памяти в адресное пространство в режиме чтения и записи, изменения будут видны другим процессам, отображение с начала объекта (смещение 0)
     shared_data *shm = mmap(NULL, sizeof(shared_data), PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
     if (shm == MAP_FAILED) {
         perror("Failed to map to the address space (mmap)\n");
@@ -40,21 +37,21 @@ int main(int argc, char* argv[]) {
     int is_error = 0; 
 
     while (1) {
-        sem_wait(&shm->sem_child); // ожидаем сигнал для обработки команд
+        sem_wait(&shm->sem_child);
 
         if (strcmp(shm->data, "EXIT") == 0) {
             break;
         }
 
         char* token;
-        char* rest = shm->data; // оставшаяся строка
+        char* rest = shm->data;
         double first_num;
         double result;
         int is_first = 1;
-        is_error = 0; // сбрасываем флаг ошибки перед обработкой новой команды
+        is_error = 0;
 
         while ((token = strtok_r(rest, " ", &rest))) {
-            char* endptr; // указатель начала несоответствия для перевода в число
+            char* endptr;
             double num = strtod(token, &endptr);
 
             if (*endptr != '\0') {
@@ -77,7 +74,6 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        // передача сигнала об ошибке родителю
         if (is_error) {
             setData(shm, "ERROR");
             

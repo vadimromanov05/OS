@@ -1,6 +1,6 @@
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-project(mai-os)
+project(lab567)
 
 add_library(lab567_tools src/tools.cpp)
 target_include_directories(lab567_tools PRIVATE include)

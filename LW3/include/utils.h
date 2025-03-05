@@ -5,7 +5,6 @@
 #include <semaphore.h>
 #include <stdio.h>
 
-// Структурка для взаимодействия процессов
 typedef struct {
     sem_t sem_parent;
     sem_t sem_child;

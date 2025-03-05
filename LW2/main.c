@@ -1,5 +1,5 @@
 #include "../include/utils.h"
-#define N 4 // Размер системы уравнений
+#define N 4
 
 
 int main() {
