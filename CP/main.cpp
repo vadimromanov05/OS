@@ -8,7 +8,7 @@ int main() {
         return 1;
     }
     //std::cout << "main2\n";
-    dag.execute(4);
+    dag.execute(2);
     //std::cout << "main3\n";
     return 0;
 }

@@ -73,13 +73,14 @@ int main(int argc, char* argv[]) {
                 result /= num;
             }
         }
-
+        fprintf(output_file, "Result: %.2f\n", result);
+        fflush(output_file);
         if (is_error) {
             setData(shm, "ERROR");
             
         } else {
-            fprintf(output_file, "Result: %.2f\n", result);
-            fflush(output_file);
+            //fprintf(output_file, "Result: %.2f\n", result);
+            //fflush(output_file);
         }
 
         sem_post(&shm->sem_parent);
